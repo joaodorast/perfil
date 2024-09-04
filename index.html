@@ -13,7 +13,7 @@
             background-color: #f4f4f4;
             color: #333;
         }
-        
+
         header {
             background-color: #0f26f1;
             color: white;
@@ -28,7 +28,7 @@
             padding: 20px;
         }
 
-        .profile {
+        .profile, .projects {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -38,16 +38,17 @@
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
+            flex-direction: column;
         }
 
-        .profile:hover {
+        .profile:hover, .projects:hover {
             transform: scale(1.02);
         }
 
         .profile img {
             max-width: 150px;
             border-radius: 50%;
-            margin-right: 20px;
+            margin: 20px 0;
             transition: transform 0.3s;
         }
 
@@ -67,7 +68,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .about h2 {
+        .about h2, .projects h2 {
             font-size: 24px;
             margin-bottom: 15px;
         }
@@ -77,7 +78,6 @@
             padding: 10px 20px;
             background-color: #0f26f1;
             color: white;
-            text-align: center;
             border-radius: 5px;
             text-decoration: none;
             margin-top: 20px;
@@ -113,6 +113,32 @@
             margin-top: 20px;
         }
 
+        .project-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .remove-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px 10px;
+            transition: background-color 0.3s;
+        }
+
+        .remove-btn:hover {
+            background-color: #e60000;
+        }
+
+        /* Media queries */
         @media (max-width: 600px) {
             .profile {
                 flex-direction: column;
@@ -145,17 +171,75 @@
             <p>Sou apaixonado por programação, design e tudo que envolve o mundo digital. Neste espaço, compartilho meus projetos, ideias e conhecimentos na área de tecnologia. Também gosto de jogar e passar tempo com amigos.</p>
             <a href="mailto:seuemail@example.com" class="contact-btn">Entre em Contato</a>
         </div>
-        
+
         <div class="social-links">
             <h2>Minhas Redes Sociais</h2>
             <a href="https://github.com/joaodorast" target="_blank">GitHub</a>
             <a href="https://linkedin.com/in/joaodorast" target="_blank">LinkedIn</a>
             <a href="https://twitter.com/joaodorast" target="_blank">Twitter</a>
         </div>
+
+        <div class="projects">
+            <h2>Meus Projetos</h2>
+            <div id="projectList">
+                <!-- Projetos serão adicionados aqui -->
+            </div>
+            <input type="text" id="projectInput" placeholder="Adicione um novo projeto">
+            <button onclick="addProject()">Adicionar Projeto</button>
+        </div>
     </div>
 
     <footer class="footer">
         <p>© 2024 Meu Perfil. Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        // Carregar projetos do armazenamento local quando a página for carregada
+        window.onload = function() {
+            loadProjects();
+        };
+
+        function loadProjects() {
+            const projectList = document.getElementById('projectList');
+            const projects = JSON.parse(localStorage.getItem('projects')) || [];
+
+            projectList.innerHTML = '';
+            projects.forEach((project, index) => {
+                const projectItem = document.createElement('div');
+                projectItem.classList.add('project-item');
+                projectItem.innerHTML = `
+                    ${project.name} - ${project.date}
+                    <button class="remove-btn" onclick="removeProject(${index})">Remover</button>
+                `;
+                projectList.appendChild(projectItem);
+            });
+        }
+
+        function addProject() {
+            const input = document.getElementById('projectInput');
+            const projectName = input.value;
+
+            if (projectName) {
+                const projects = JSON.parse(localStorage.getItem('projects')) || [];
+                const project = {
+                    name: projectName,
+                    date: new Date().toLocaleString() // Adiciona a data atual
+                };
+                projects.push(project);
+                localStorage.setItem('projects', JSON.stringify(projects));
+                input.value = ''; // Limpa o campo de entrada
+                loadProjects(); // Atualiza a lista de projetos
+            } else {
+                alert('Por favor, insira um texto para o projeto.');
+            }
+        }
+
+        function removeProject(index) {
+            const projects = JSON.parse(localStorage.getItem('projects')) || [];
+            projects.splice(index, 1); // Remove o projeto pelo índice
+            localStorage.setItem('projects', JSON.stringify(projects));
+            loadProjects(); // Atualiza a lista de projetos
+        }
+    </script>
 </body>
 </html>
