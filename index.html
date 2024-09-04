@@ -22,12 +22,17 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
         .profile {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 40px auto;
-            max-width: 800px;
+            margin: 40px 0;
             background-color: white;
             border-radius: 10px;
             padding: 20px;
@@ -56,8 +61,6 @@
         }
 
         .about {
-            margin: 40px auto;
-            max-width: 800px;
             background-color: white;
             border-radius: 10px;
             padding: 20px;
@@ -78,11 +81,12 @@
             border-radius: 5px;
             text-decoration: none;
             margin-top: 20px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         .contact-btn:hover {
             background-color: #09419b;
+            transform: scale(1.05);
         }
 
         .social-links {
@@ -94,6 +98,7 @@
             text-decoration: none;
             color: #0f26f1;
             font-size: 24px;
+            transition: color 0.3s;
         }
 
         .social-links a:hover {
@@ -105,9 +110,6 @@
             padding: 20px 0;
             background-color: #255fca;
             color: white;
-            position: relative;
-            bottom: 0;
-            width: 100%;
             margin-top: 20px;
         }
 
@@ -132,26 +134,28 @@
         <h1>Bem-vindo ao meu perfil!</h1>
     </header>
 
-    <div class="profile">
-        <img src="R.jpg" alt="Minha Foto de Perfil">
-        <p>Olá! Sou <strong>Sonic</strong>, um entusiasta de tecnologia e criador de conteúdo. Estou sempre em busca de aprender e compartilhar know-how sobre as últimas tendências tecnológicas.</p>
-    </div>
+    <div class="container">
+        <div class="profile">
+            <img src="R.jpg" alt="Minha Foto de Perfil">
+            <p>Olá! Sou <strong>Sonic</strong>, um entusiasta de tecnologia e criador de conteúdo. Estou sempre em busca de aprender e compartilhar conhecimento sobre as últimas tendências tecnológicas.</p>
+        </div>
 
-    <div class="about">
-        <h2>Sobre Mim</h2>
-        <p>Eu sou apaixonado por programação, design e tudo que envolve o mundo digital. Neste espaço, compartilho meus projetos, ideias e conhecimentos na área de tecnologia. Também gosto de jogar e passar tempo com amigos.</p>
-        <a href="mailto:seuemail@example.com" class="contact-btn">Entre em Contato</a>
-    </div>
-    
-    <div class="social-links">
-        <h2>Minhas Redes Sociais</h2>
-        <a href="https://github.com/joaodorast" target="_blank">GitHub</a>
-        <a href="https://linkedin.com/in/joaodorast" target="_blank">LinkedIn</a>
-        <a href="https://twitter.com/joaodorast" target="_blank">Twitter</a>
+        <div class="about">
+            <h2>Sobre Mim</h2>
+            <p>Sou apaixonado por programação, design e tudo que envolve o mundo digital. Neste espaço, compartilho meus projetos, ideias e conhecimentos na área de tecnologia. Também gosto de jogar e passar tempo com amigos.</p>
+            <a href="mailto:seuemail@example.com" class="contact-btn">Entre em Contato</a>
+        </div>
+        
+        <div class="social-links">
+            <h2>Minhas Redes Sociais</h2>
+            <a href="https://github.com/joaodorast" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/joaodorast" target="_blank">LinkedIn</a>
+            <a href="https://twitter.com/joaodorast" target="_blank">Twitter</a>
+        </div>
     </div>
 
     <footer class="footer">
-        <p>&copy; 2024 Meu Perfil. Todos os direitos reservados.</p>
+        <p>© 2024 Meu Perfil. Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>
