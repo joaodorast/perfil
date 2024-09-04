@@ -138,7 +138,7 @@
             background-color: #e60000;
         }
 
-        /* Media queries */
+        
         @media (max-width: 600px) {
             .profile {
                 flex-direction: column;
@@ -182,7 +182,7 @@
         <div class="projects">
             <h2>Meus Projetos</h2>
             <div id="projectList">
-                <!-- Projetos serão adicionados aqui -->
+                
             </div>
             <input type="text" id="projectInput" placeholder="Adicione um novo projeto">
             <button onclick="addProject()">Adicionar Projeto</button>
@@ -194,7 +194,7 @@
     </footer>
 
     <script>
-        // Carregar projetos do armazenamento local quando a página for carregada
+        
         window.onload = function() {
             loadProjects();
         };
@@ -223,12 +223,12 @@
                 const projects = JSON.parse(localStorage.getItem('projects')) || [];
                 const project = {
                     name: projectName,
-                    date: new Date().toLocaleString() // Adiciona a data atual
+                    date: new Date().toLocaleString() 
                 };
                 projects.push(project);
                 localStorage.setItem('projects', JSON.stringify(projects));
-                input.value = ''; // Limpa o campo de entrada
-                loadProjects(); // Atualiza a lista de projetos
+                input.value = ''; 
+                loadProjects(); 
             } else {
                 alert('Por favor, insira um texto para o projeto.');
             }
@@ -236,9 +236,9 @@
 
         function removeProject(index) {
             const projects = JSON.parse(localStorage.getItem('projects')) || [];
-            projects.splice(index, 1); // Remove o projeto pelo índice
+            projects.splice(index, 1); 
             localStorage.setItem('projects', JSON.stringify(projects));
-            loadProjects(); // Atualiza a lista de projetos
+            loadProjects(); 
         }
     </script>
 </body>
