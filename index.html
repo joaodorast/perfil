@@ -16,30 +16,48 @@
         }
 
         header {
-            background-color: #0f26f1;
+            background-color: #0056b3;
             color: white;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: relative; /* Para efeitos de animação */
+            overflow: hidden;
+        }
+
+        header h1 {
+            animation: slideIn 1s ease forwards; /* Animação ao entrar */
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
 
         .profile, .projects {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 40px 0;
             background-color: white;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
             transition: transform 0.3s;
-            flex-direction: column;
         }
 
         .profile:hover, .projects:hover {
@@ -60,56 +78,53 @@
         .profile p {
             font-size: 20px;
             line-height: 1.6;
-        }
-
-        .about {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         .about h2, .projects h2 {
             font-size: 24px;
-            margin-bottom: 15px;
+            margin: 15px 0;
+            text-align: center;
         }
 
         .contact-btn {
-            display: inline-block;
             padding: 10px 20px;
-            background-color: #0f26f1;
+            background-color: #0056b3;
             color: white;
             border-radius: 5px;
             text-decoration: none;
             margin-top: 20px;
             transition: background-color 0.3s, transform 0.3s;
+            display: inline-block;
         }
 
         .contact-btn:hover {
-            background-color: #09419b;
+            background-color: #003d7a;
             transform: scale(1.05);
         }
 
         .social-links {
             margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
 
         .social-links a {
-            margin: 0 10px;
             text-decoration: none;
-            color: #0f26f1;
+            color: #0056b3;
             font-size: 24px;
             transition: color 0.3s;
         }
 
         .social-links a:hover {
-            color: #09419b;
+            color: #003d7a;
         }
 
         .footer {
             text-align: center;
             padding: 20px 0;
-            background-color: #255fca;
+            background-color: #0056b3;
             color: white;
             margin-top: 20px;
         }
@@ -127,11 +142,11 @@
         }
 
         .project-item:hover {
-            transform: translateY(-2px);
+            background-color: #ececec; /* Mudança de cor ao passar o mouse */
         }
 
-        .remove-btn {
-            background-color: #ff4d4d;
+        .remove-btn, .edit-btn {
+            background-color: #dc3545; /* Vermelho para remover */
             color: white;
             border: none;
             border-radius: 5px;
@@ -140,8 +155,16 @@
             transition: background-color 0.3s;
         }
 
+        .edit-btn {
+            background-color: #28a745; /* Verde para editar */
+        }
+
         .remove-btn:hover {
-            background-color: #e60000;
+            background-color: #c82333;
+        }
+
+        .edit-btn:hover {
+            background-color: #218838;
         }
 
         .clear-btn {
@@ -151,6 +174,7 @@
             border-radius: 5px;
             cursor: pointer;
             margin-top: 10px;
+            transition: background-color 0.3s;
         }
 
         .clear-btn:hover {
@@ -166,9 +190,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(0, 0, 0, 0.4);
             padding-top: 60px;
         }
 
@@ -179,6 +201,12 @@
             border: 1px solid #888;
             width: 80%;
             border-radius: 10px;
+            animation: fadeIn 0.3s; /* Animação de fade para o modal */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .close {
@@ -195,19 +223,58 @@
             cursor: pointer;
         }
 
-        /* Media queries */
+        /* Notificações */
+        .notification {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            width: 100%; /* Largura completa */
+            max-width: 600px; /* Largura máxima */
+        }
+
+        .notification.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .notification.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .notification.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Pesquisa */
+        .search {
+            margin-bottom: 20px; /* Espaçamento para a barra de pesquisa */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px; /* Espaçamento entre input e botão */
+        }
+
+        .search input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%; /* Largura completa */
+            max-width: 300px; /* Largura máxima */
+        }
+
         @media (max-width: 600px) {
-            .profile {
+            .profile, .projects {
+                width: 100%; /* Ocupa a largura total em telas pequenas */
+            }
+
+            .social-links {
                 flex-direction: column;
                 align-items: center;
-            }
-
-            .profile img {
-                margin-bottom: 20px;
-            }
-
-            .profile p {
-                text-align: center;
             }
         }
     </style>
@@ -218,64 +285,100 @@
     </header>
 
     <div class="container">
-        <div class="profile">
+        <!-- Perfil do Usuário -->
+        <section class="profile" aria-labelledby="profile-heading">
             <img src="R.jpg" alt="Minha Foto de Perfil">
             <p>Olá! Sou <strong>Sonic</strong>, um entusiasta de tecnologia e criador de conteúdo. Estou sempre em busca de aprender e compartilhar conhecimento sobre as últimas tendências tecnológicas.</p>
-        </div>
+        </section>
 
-        <div class="about">
-            <h2>Sobre Mim</h2>
-            <p>Sou apaixonado por programação, design e tudo que envolve o mundo digital. Neste espaço, compartilho meus projetos, ideias e conhecimentos na área de tecnologia. Também gosto de jogar e passar tempo com amigos.</p>
+        <!-- Sobre Mim -->
+        <section class="about">
+            <h2 id="about-heading">Sobre Mim</h2>
+            <p>Sou apaixonado por programação, design e tudo que envolve o mundo digital.</p>
             <a href="mailto:seuemail@example.com" class="contact-btn">Entre em Contato</a>
+        </section>
+
+        <!-- Redes Sociais -->
+        <div class="social-links" aria-labelledby="social-heading">
+            <h2 id="social-heading">Minhas Redes Sociais</h2>
+            <a href="https://github.com/joaodorast" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://linkedin.com/in/joaodorast" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://twitter.com/joaodorast" target="_blank" rel="noopener noreferrer">Twitter</a>
+        </div>
+        /head>
+        <body>
+            <header>
+                <h1>Bem-vindo ao meu site de programação!</h1>
+                <nav>
+                    <ul>
+                        <li><a href="html.html">HTML</a></li>
+                        <li><a href="css.html">CSS</a></li>
+                        <li><a href="javascript.html">JavaScript</a></li>
+                        <li><a href="python.html">Python</a></li>
+                        <li><a href="php.html">PHP</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <main> 
+        <!-- Pesquisa de Projetos -->
+        <div class="search">
+            <input type="text" id="searchBar" placeholder="Pesquisar Projetos" aria-label="Buscar Projetos" oninput="searchProjects()"/>
         </div>
 
-        <div class="social-links">
-            <h2>Minhas Redes Sociais</h2>
-            <a href="https://github.com/joaodorast" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/in/joaodorast" target="_blank">LinkedIn</a>
-            <a href="https://twitter.com/joaodorast" target="_blank">Twitter</a>
-        </div>
-
-        <div class="projects">
+        <!-- Projetos -->
+        <section class="projects">
             <h2>Meus Projetos</h2>
-            <div id="projectList">
-                <!-- Projetos serão adicionados aqui -->
-            </div>
-            <input type="text" id="projectInput" placeholder="Adicione um novo projeto">
+            <div id="projectList" role="list"></div>
+            <input type="text" id="projectInput" placeholder="Adicione um novo projeto" aria-label="Adicionar projeto">
             <button onclick="addProject()">Adicionar Projeto</button>
             <button class="clear-btn" onclick="confirmClearProjects()">Limpar Todos os Projetos</button>
-        </div>
+            <div id="notification" class="notification" aria-live="polite"></div> <!-- Notification area -->
+        </section>
     </div>
 
     <footer class="footer">
         <p>© 2024 Meu Perfil. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Modal -->
+    <!-- Modal de Confirmação -->
     <div id="confirmModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <p>Você tem certeza que deseja remover todos os projetos?</p>
-        <button onclick="clearProjects()">Sim</button>
-        <button onclick="closeModal()">Não</button>
-      </div>
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>Você tem certeza que deseja remover todos os projetos?</p>
+            <button onclick="clearProjects()">Sim</button>
+            <button onclick="closeModal()">Não</button>
+        </div>
+    </div>
+
+    <!-- Modal de Edição -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <p id="editPrompt"></p>
+            <input type="text" id="editInput" placeholder="Alterar nome do projeto">
+            <button onclick="saveEdit()">Salvar</button>
+        </div>
     </div>
 
     <script>
-        window.onload = function() {
+        let editIndex = -1;
+
+        window.onload = () => {
             loadProjects();
+            document.getElementById('projectInput').focus();
         };
 
         function loadProjects() {
             const projectList = document.getElementById('projectList');
-            const projects = JSON.parse(localStorage.getItem('projects')) || [];
-
+            const projects = getProjects();
             projectList.innerHTML = '';
+
             projects.forEach((project, index) => {
                 const projectItem = document.createElement('div');
                 projectItem.classList.add('project-item');
                 projectItem.innerHTML = `
-                    ${project.name} - ${project.date}
+                    <span>${project.name} - ${new Date(project.date).toLocaleString('pt-BR')}</span>
+                    <button class="edit-btn" onclick="openEditModal(${index})">Editar</button>
                     <button class="remove-btn" onclick="confirmRemoveProject(${index})">Remover</button>
                 `;
                 projectList.appendChild(projectItem);
@@ -285,20 +388,39 @@
         function addProject() {
             const input = document.getElementById('projectInput');
             const projectName = input.value.trim();
+            const notification = document.getElementById('notification');
+            const projectNameRegex = /^[a-zA-Z0-9\s]+$/;
 
             if (projectName) {
-                const projects = JSON.parse(localStorage.getItem('projects')) || [];
-                const project = {
-                    name: projectName,
-                    date: new Date().toLocaleString()
-                };
-                projects.push(project);
-                localStorage.setItem('projects', JSON.stringify(projects));
-                input.value = '';
-                loadProjects();
+                if (!projectNameRegex.test(projectName)) {
+                    showNotification('Por favor, use apenas letras e números no nome do projeto.', 'error');
+                    return;
+                }
+
+                let projects = getProjects();
+                if (!projects.some(project => project.name.toLowerCase() === projectName.toLowerCase())) {
+                    const project = {
+                        name: projectName,
+                        date: new Date().toISOString()
+                    };
+
+                    projects.push(project);
+                    localStorage.setItem('projects', JSON.stringify(projects));
+                    input.value = '';
+
+                    loadProjects();
+                    showNotification('Projeto adicionado com sucesso!', 'success');
+                    input.focus();
+                } else {
+                    showNotification('Este projeto já existe!', 'error');
+                }
             } else {
-                alert('Por favor, insira um texto para o projeto.');
+                showNotification('Por favor, insira um texto para o projeto.', 'error');
             }
+        }
+
+        function getProjects() {
+            return JSON.parse(localStorage.getItem('projects')) || [];
         }
 
         function confirmRemoveProject(index) {
@@ -308,10 +430,39 @@
         }
 
         function removeProject(index) {
-            const projects = JSON.parse(localStorage.getItem('projects')) || [];
+            let projects = getProjects();
             projects.splice(index, 1);
             localStorage.setItem('projects', JSON.stringify(projects));
             loadProjects();
+            showNotification('Projeto removido com sucesso!', 'success');
+        }
+
+        function openEditModal(index) {
+            editIndex = index;
+            const projects = getProjects();
+            document.getElementById('editInput').value = projects[index].name;
+            document.getElementById('editPrompt').innerText = `Modificar etiqueta "${projects[index].name}"`;
+            document.getElementById("editModal").style.display = "block";
+        }
+
+        function closeEditModal() {
+            document.getElementById("editModal").style.display = "none";
+        }
+
+        function saveEdit() {
+            const input = document.getElementById('editInput').value.trim();
+            const projects = getProjects();
+            const notification = document.getElementById('notification');
+
+            if (input) {
+                projects[editIndex].name = input;
+                localStorage.setItem('projects', JSON.stringify(projects));
+                loadProjects();
+                closeEditModal();
+                showNotification('Projeto modificado com sucesso!', 'success');
+            } else {
+                showNotification('Por favor, insira um nome válido para o projeto.', 'error');
+            }
         }
 
         function confirmClearProjects() {
@@ -322,18 +473,68 @@
             localStorage.removeItem('projects');
             loadProjects();
             closeModal();
+            showNotification('Todos os projetos foram removidos.', 'success');
         }
 
         function closeModal() {
             document.getElementById("confirmModal").style.display = "none";
         }
 
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                notification.className = 'notification';
+            }, 3000);
+        }
+
+        function searchProjects() {
+            const input = document.getElementById('searchBar').value.toLowerCase();
+            const projectList = document.getElementById('projectList');
+            const projects = getProjects();
+
+            projectList.innerHTML = '';
+
+            projects.forEach((project, index) => {
+                if (project.name.toLowerCase().includes(input)) {
+                    const projectItem = document.createElement('div');
+                    projectItem.classList.add('project-item');
+                    projectItem.innerHTML = `
+                        <span>${project.name} - ${new Date(project.date).toLocaleString('pt-BR')}</span>
+                        <button class="edit-btn" onclick="openEditModal(${index})">Editar</button>
+                        <button class="remove-btn" onclick="confirmRemoveProject(${index})">Remover</button>
+                    `;
+                    projectList.appendChild(projectItem);
+                }
+            });
+        }
+
+        // Keyboard Shortcuts
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                addProject();
+            }
+
+            if (event.key === 'Escape') {
+                closeModal();
+                closeEditModal();
+                document.getElementById('projectInput').focus();
+            }
+        });
+
         window.onclick = function(event) {
             const modal = document.getElementById("confirmModal");
-            if (event.target == modal) {
+            const editModal = document.getElementById("editModal");
+            if (event.target === modal) {
                 closeModal();
             }
-        }
+            if (event.target === editModal) {
+                closeEditModal();
+            }
+        };
     </script>
 </body>
 </html>
