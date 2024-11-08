@@ -21,12 +21,12 @@
             padding: 20px;
             text-align: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            position: relative; /* Para efeitos de animação */
+            position: relative; 
             overflow: hidden;
         }
 
         header h1 {
-            animation: slideIn 1s ease forwards; /* Animação ao entrar */
+            animation: slideIn 1s ease forwards; 
         }
 
         @keyframes slideIn {
@@ -142,11 +142,11 @@
         }
 
         .project-item:hover {
-            background-color: #ececec; /* Mudança de cor ao passar o mouse */
+            background-color: #ececec; 
         }
 
         .remove-btn, .edit-btn {
-            background-color: #dc3545; /* Vermelho para remover */
+            background-color: #dc3545; 
             color: white;
             border: none;
             border-radius: 5px;
@@ -156,7 +156,7 @@
         }
 
         .edit-btn {
-            background-color: #28a745; /* Verde para editar */
+            background-color: #28a745; 
         }
 
         .remove-btn:hover {
@@ -181,7 +181,6 @@
             background-color: #e6b800;
         }
 
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -201,7 +200,7 @@
             border: 1px solid #888;
             width: 80%;
             border-radius: 10px;
-            animation: fadeIn 0.3s; /* Animação de fade para o modal */
+            animation: fadeIn 0.3s; 
         }
 
         @keyframes fadeIn {
@@ -223,7 +222,6 @@
             cursor: pointer;
         }
 
-        /* Notificações */
         .notification {
             padding: 10px;
             border-radius: 5px;
@@ -231,8 +229,8 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s, visibility 0.3s;
-            width: 100%; /* Largura completa */
-            max-width: 600px; /* Largura máxima */
+            width: 100%;
+            max-width: 600px; 
         }
 
         .notification.success {
@@ -250,26 +248,25 @@
             visibility: visible;
         }
 
-        /* Pesquisa */
         .search {
-            margin-bottom: 20px; /* Espaçamento para a barra de pesquisa */
+            margin-bottom: 20px; 
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px; /* Espaçamento entre input e botão */
+            gap: 10px; 
         }
 
         .search input {
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #ccc;
-            width: 100%; /* Largura completa */
-            max-width: 300px; /* Largura máxima */
+            width: 100%; 
+            max-width: 300px; 
         }
 
         @media (max-width: 600px) {
             .profile, .projects {
-                width: 100%; /* Ocupa a largura total em telas pequenas */
+                width: 100%; 
             }
 
             .social-links {
@@ -285,28 +282,25 @@
     </header>
 
     <div class="container">
-        <!-- Perfil do Usuário -->
         <section class="profile" aria-labelledby="profile-heading">
             <img src="R.jpg" alt="Minha Foto de Perfil">
             <p>Olá! Sou <strong>Sonic</strong>, um entusiasta de tecnologia e criador de conteúdo. Estou sempre em busca de aprender e compartilhar conhecimento sobre as últimas tendências tecnológicas.</p>
         </section>
 
-        <!-- Sobre Mim -->
         <section class="about">
             <h2 id="about-heading">Sobre Mim</h2>
             <p>Sou apaixonado por programação, design e tudo que envolve o mundo digital.</p>
             <a href="mailto:seuemail@example.com" class="contact-btn">Entre em Contato</a>
         </section>
 
-        <!-- Redes Sociais -->
         <div class="social-links" aria-labelledby="social-heading">
             <h2 id="social-heading">Minhas Redes Sociais</h2>
             <a href="https://github.com/joaodorast" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="https://linkedin.com/in/joaodorast" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href="https://twitter.com/joaodorast" target="_blank" rel="noopener noreferrer">Twitter</a>
         </div>
-        /head>
-        <body>
+        
+        <div>
             <header>
                 <h1>Bem-vindo ao meu site de programação!</h1>
                 <nav>
@@ -320,27 +314,26 @@
                 </nav>
             </header>
             <main> 
-        <!-- Pesquisa de Projetos -->
-        <div class="search">
-            <input type="text" id="searchBar" placeholder="Pesquisar Projetos" aria-label="Buscar Projetos" oninput="searchProjects()"/>
-        </div>
+                <div class="search">
+                    <input type="text" id="searchBar" placeholder="Pesquisar Projetos" aria-label="Buscar Projetos" oninput="searchProjects()"/>
+                </div>
 
-        <!-- Projetos -->
-        <section class="projects">
-            <h2>Meus Projetos</h2>
-            <div id="projectList" role="list"></div>
-            <input type="text" id="projectInput" placeholder="Adicione um novo projeto" aria-label="Adicionar projeto">
-            <button onclick="addProject()">Adicionar Projeto</button>
-            <button class="clear-btn" onclick="confirmClearProjects()">Limpar Todos os Projetos</button>
-            <div id="notification" class="notification" aria-live="polite"></div> <!-- Notification area -->
-        </section>
+                <section class="projects">
+                    <h2>Meus Projetos</h2>
+                    <div id="projectList" role="list"></div>
+                    <input type="text" id="projectInput" placeholder="Adicione um novo projeto" aria-label="Adicionar projeto">
+                    <button onclick="addProject()">Adicionar Projeto</button>
+                    <button class="clear-btn" onclick="confirmClearProjects()">Limpar Todos os Projetos</button>
+                    <div id="notification" class="notification" aria-live="polite"></div>
+                </section>
+            </main>
+        </div>
     </div>
 
     <footer class="footer">
         <p>© 2024 Meu Perfil. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Modal de Confirmação -->
     <div id="confirmModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -350,7 +343,6 @@
         </div>
     </div>
 
-    <!-- Modal de Edição -->
     <div id="editModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeEditModal()">&times;</span>
@@ -512,7 +504,6 @@
             });
         }
 
-        // Keyboard Shortcuts
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Enter') {
                 addProject();
